@@ -270,3 +270,25 @@ body {
     padding-left: 40px;
     padding-right: 40px;
 }
+
+
+/* 찜 버튼 관련 스타일 */
+.favorite-button {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.favorite-button.active {
+  color: white; /* 찜 상태일 때 흰색으로 변경 */
+}
+
+/* 찜 텍스트 스타일 */
+.favorite-text {
+  margin-left: 8px;
+  color: #fff;
+  font-size: 1rem;
+}

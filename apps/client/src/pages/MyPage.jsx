@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import '../styles/MyPage.css';
 import { useFollow } from "./FollowContext";
+import { useCreatePost } from "../hooks/use-post";
 
 export default function MyPage({ profile }) {
     const [activeTab, setActiveTab] = useState("찜");
     const [showFollowingList, setShowFollowingList] = useState(false);
     const navigate = useNavigate();
     const { followingList } = useFollow();
+    const { posts, handleLike, handleAddComment } = useCreatePost(); // 훅 사용
 
     const handleTabClick = (tab) => setActiveTab(tab);
 

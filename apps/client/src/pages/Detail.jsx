@@ -236,18 +236,13 @@ export default function Detail() {
                                 <strong>☆</strong> {details.vote_average}
                             </p>
                             <p>
-                            <span 
-                                onClick={toggleFavorite} 
-                                className="favorite-button" 
-                                style={{
-                                    cursor: "pointer",
-                                    fontSize: "1.5rem",
-                                    color: isFavorite ? "white" : "gray",
-                                }}
-                            >
+                            <button
+                                onClick={toggleFavorite}
+                                className={`favorite-button ${isFavorite ? 'active' : ''}`}
+                                >
                                 {isFavorite ? "⚑" : "⚐"}
-                            </span>
-                            <span style={{ marginLeft: "8px" }}>찜</span>
+                                </button>
+                                <span className="favorite-text">찜</span>
                             </p>
                         </div>
                     </div>
