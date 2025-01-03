@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import '../styles/MyPage.css'
+import '../styles/MyPage.css';
+import { useFollow } from "./FollowContext";
 
 export default function MyPage({ profile }) {
     const [activeTab, setActiveTab] = useState("찜");
+    const [showFollowingList, setShowFollowingList] = useState(false);
     const navigate = useNavigate();
+    const { followingList } = useFollow();
 
     const handleTabClick = (tab) => setActiveTab(tab);
 
@@ -37,7 +40,13 @@ export default function MyPage({ profile }) {
                     </h2>
                     <p>{profile.email}</p>
                     <p>
-                        {profile.following} following {profile.follower} follower
+                        <span
+                            style={{ cursor: "pointer", color: "white" }}
+                            onClick={() => setShowFollowingList(!showFollowingList)}
+                        >
+                            {followingList.length} following
+                        </span>{" "}
+                        {profile.follower} follower
                     </p>
                     <p>
                         <a
@@ -66,6 +75,22 @@ export default function MyPage({ profile }) {
                     </p>
                 </div>
             </div>
+
+            {/* 팔로우 목록 */}
+            {showFollowingList && (
+                <div className="following-list">
+                    <h3>팔로우한 사용자</h3>
+                    {followingList.length > 0 ? (
+                        <ul>
+                            {followingList.map((user, index) => (
+                                <li key={index}>{user.name}</li>
+                            ))}
+                        </ul>
+                    ) : (
+                        <p>팔로우한 사용자가 없습니다.</p>
+                    )}
+                </div>
+            )}
 
             {/* 컨텐츠 섹션 */}
             <div className="content-section">

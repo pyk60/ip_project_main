@@ -1,10 +1,17 @@
 import React, { useState } from "react";
 import "../styles/Community.css";
+import { useFollow } from "./FollowContext";
 
 function Community() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleOpenModal = () => setIsModalOpen(true);
     const handleCloseModal = () => setIsModalOpen(false);
+
+    const { addFollowing } = useFollow(); // FollowContext에서 addFollowing 가져오기
+
+    const handleFollow = () => {
+        addFollowing({ name: "Channel Name", avatar: "../img/default-avatar.jpg" });
+    };
 
     return (
         <div className="community-container">
@@ -12,21 +19,21 @@ function Community() {
                 {/* 채널 정보 */}
                 <div className="channel-info">
                     <div className="channel-profile">
-                        <img 
+                        <img
                             src={require("../img/default-avatar.jpg")}
-                            alt="Channel" 
+                            alt="Channel"
                             className="channel-avatar"
                         />
                         <span className="channel-name">Channel Name</span>
                     </div>
-                    <button className="follow-btn">follow</button>
+                    <button className="follow-btn" onClick={handleFollow}>follow</button>
                 </div>
 
                 {/* 게시물 내용 */}
                 <div className="post-content">
-                    <img 
+                    <img
                         src={require("../img/post-image.png")}
-                        alt="Post content" 
+                        alt="Post content"
                         className="content-image"
                     />
                     <p className="content-text">
@@ -55,12 +62,12 @@ function Community() {
                             </div>
                         </div>
                         <div className="modal-body">
-                            <input 
-                                type="text" 
-                                placeholder="제목을 입력하세요" 
+                            <input
+                                type="text"
+                                placeholder="제목을 입력하세요"
                                 className="modal-input"
                             />
-                            <textarea 
+                            <textarea
                                 className="modal-textarea"
                                 placeholder="내용을 입력하세요"
                             />
